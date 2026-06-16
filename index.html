@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CI/CD Pipeline Demo - IBM Cloud</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-cloud"></i>
+                <span>IBM Cloud DevOps</span>
+            </div>
+            <div class="nav-links">
+                <a href="#overview">Overview</a>
+                <a href="#pipeline">Pipeline</a>
+                <a href="#commands">Commands</a>
+                <a href="#metrics">Metrics</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero" id="overview">
+            <div class="hero-content">
+                <h1>CI/CD Pipeline Automation</h1>
+                <p class="hero-subtitle">Streamline your development workflow with automated testing, building, and deployment</p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-value" id="deployCount">0</div>
+                        <div class="stat-label">Deployments</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">99.9%</div>
+                        <div class="stat-label">Uptime</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">< 2min</div>
+                        <div class="stat-label">Deploy Time</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Status Dashboard -->
+        <section class="status-dashboard">
+            <h2><i class="fas fa-chart-line"></i> System Status</h2>
+            <div class="status-grid">
+                <div class="status-card">
+                    <div class="status-header">
+                        <i class="fas fa-code-branch"></i>
+                        <span>Repository</span>
+                    </div>
+                    <div class="status-value status-success">
+                        <i class="fas fa-check-circle"></i> Connected
+                    </div>
+                    <div class="status-detail">Last commit: <span id="lastCommit">Just now</span></div>
+                </div>
+                <div class="status-card">
+                    <div class="status-header">
+                        <i class="fas fa-vial"></i>
+                        <span>Tests</span>
+                    </div>
+                    <div class="status-value status-success">
+                        <i class="fas fa-check-circle"></i> Passing
+                    </div>
+                    <div class="status-detail">Coverage: 95%</div>
+                </div>
+                <div class="status-card">
+                    <div class="status-header">
+                        <i class="fas fa-rocket"></i>
+                        <span>Deployment</span>
+                    </div>
+                    <div class="status-value status-success">
+                        <i class="fas fa-check-circle"></i> Live
+                    </div>
+                    <div class="status-detail">Environment: Production</div>
+                </div>
+                <div class="status-card">
+                    <div class="status-header">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Security</span>
+                    </div>
+                    <div class="status-value status-success">
+                        <i class="fas fa-check-circle"></i> Secure
+                    </div>
+                    <div class="status-detail">No vulnerabilities</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Pipeline -->
+        <section class="pipeline-section" id="pipeline">
+            <h2><i class="fas fa-project-diagram"></i> CI/CD Pipeline</h2>
+            <div class="pipeline-container">
+                <div class="pipeline-stage" data-stage="1">
+                    <div class="stage-number">1</div>
+                    <div class="stage-content">
+                        <i class="fas fa-code"></i>
+                        <h3>Code Commit</h3>
+                        <p>Developer pushes code to repository</p>
+                        <div class="stage-status">Ready</div>
+                    </div>
+                </div>
+                <div class="pipeline-connector"></div>
+                <div class="pipeline-stage" data-stage="2">
+                    <div class="stage-number">2</div>
+                    <div class="stage-content">
+                        <i class="fas fa-vial"></i>
+                        <h3>Run Tests</h3>
+                        <p>Automated unit & integration tests</p>
+                        <div class="stage-status">Ready</div>
+                    </div>
+                </div>
+                <div class="pipeline-connector"></div>
+                <div class="pipeline-stage" data-stage="3">
+                    <div class="stage-number">3</div>
+                    <div class="stage-content">
+                        <i class="fas fa-hammer"></i>
+                        <h3>Build</h3>
+                        <p>Compile and package application</p>
+                        <div class="stage-status">Ready</div>
+                    </div>
+                </div>
+                <div class="pipeline-connector"></div>
+                <div class="pipeline-stage" data-stage="4">
+                    <div class="stage-number">4</div>
+                    <div class="stage-content">
+                        <i class="fas fa-rocket"></i>
+                        <h3>Deploy</h3>
+                        <p>Release to production environment</p>
+                        <div class="stage-status">Ready</div>
+                    </div>
+                </div>
+            </div>
+            <div class="pipeline-controls">
+                <button id="runPipelineBtn" class="btn-primary">
+                    <i class="fas fa-play"></i> Run Pipeline
+                </button>
+                <button id="resetPipelineBtn" class="btn-secondary">
+                    <i class="fas fa-redo"></i> Reset
+                </button>
+            </div>
+            <div id="pipelineLog" class="pipeline-log"></div>
+        </section>
+
+        <!-- Git Commands Section -->
+        <section class="commands-section" id="commands">
+            <h2><i class="fas fa-terminal"></i> Git Commands Reference</h2>
+            <p class="section-description">Copy and run these commands in your terminal to trigger the CI/CD pipeline</p>
+            
+            <div class="command-tabs">
+                <button class="tab-btn active" data-tab="basic">Basic Workflow</button>
+                <button class="tab-btn" data-tab="advanced">Advanced</button>
+                <button class="tab-btn" data-tab="troubleshoot">Troubleshooting</button>
+            </div>
+
+            <div class="tab-content active" id="basic">
+                <div class="command-card">
+                    <div class="command-header">
+                        <h3>1. Make Changes & Commit</h3>
+                        <button class="copy-btn" data-command="git add .&#10;git commit -m 'Update: your changes'">
+                            <i class="fas fa-copy"></i> Copy
+                        </button>
+                    </div>
+                    <pre><code>git add .
+git commit -m "Update: your changes"</code></pre>
+                    <p class="command-description">Stage and commit your changes locally</p>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header">
+                        <h3>2. Push to GitHub (Triggers Pipeline)</h3>
+                        <button class="copy-btn" data-command="git push origin main">
+                            <i class="fas fa-copy"></i> Copy
+                        </button>
+                    </div>
+                    <pre><code>git push origin main</code></pre>
+                    <p class="command-description">Push to main branch - this automatically triggers the CI/CD pipeline</p>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header">
+                        <h3>3. Check Pipeline Status</h3>
+                        <button class="copy-btn" data-command="gh run list">
+                            <i class="fas fa-copy"></i> Copy
+                        </button>
+                    </div>
+                    <pre><code>gh run list</code></pre>
+                    <p class="command-description">View recent workflow runs (requires GitHub CLI)</p>
+                </div>
+            </div>
+
+            <div class="tab-content" id="advanced">
+                <div class="command-card">
+                    <div class="command-header">
+                        <h3>Create Feature Branch</h3>
+                        <button class="copy-btn" data-command="git checkout -b feature/new-feature">
+                            <i class="fas fa-copy"></i> Copy
+                        </button>
+                    </div>
+                    <pre><code>git checkout -b feature/new-feature</code></pre>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header">
+                        <h3>Push Feature Branch</h3>
+                        <button class="copy-btn" data-command="git push origin feature/new-feature">
+                            <i class="fas fa-copy"></i> Copy
+                        </button>
+                    </div>
+                    <pre><code>git push origin feature/new-feature</code></pre>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header">
+                        <h3>View Workflow Logs</h3>
+                        <button class="copy-btn" data-command="gh run view --log">
+                            <i class="fas fa-copy"></i> Copy
+                        </button>
+                    </div>
+                    <pre><code>gh run view --log</code></pre>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header">
+                        <h3>Trigger Manual Workflow</h3>
+                        <button class="copy-btn" data-command="gh workflow run deploy.yml">
+                            <i class="fas fa-copy"></i> Copy
+                        </button>
+                    </div>
+                    <pre><code>gh workflow run deploy.yml</code></pre>
+                </div>
+            </div>
+
+            <div class="tab-content" id="troubleshoot">
+                <div class="command-card">
+                    <div class="command-header">
+                        <h3>Check Git Status</h3>
+                        <button class="copy-btn" data-command="git status">
+                            <i class="fas fa-copy"></i> Copy
+                        </button>
+                    </div>
+                    <pre><code>git status</code></pre>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header">
+                        <h3>View Recent Commits</h3>
+                        <button class="copy-btn" data-command="git log --oneline -5">
+                            <i class="fas fa-copy"></i> Copy
+                        </button>
+                    </div>
+                    <pre><code>git log --oneline -5</code></pre>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header">
+                        <h3>Force Push (Use Carefully!)</h3>
+                        <button class="copy-btn" data-command="git push origin main --force">
+                            <i class="fas fa-copy"></i> Copy
+                        </button>
+                    </div>
+                    <pre><code>git push origin main --force</code></pre>
+                    <p class="command-warning"><i class="fas fa-exclamation-triangle"></i> Warning: This overwrites remote history</p>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header">
+                        <h3>Reset to Last Commit</h3>
+                        <button class="copy-btn" data-command="git reset --hard HEAD~1">
+                            <i class="fas fa-copy"></i> Copy
+                        </button>
+                    </div>
+                    <pre><code>git reset --hard HEAD~1</code></pre>
+                    <p class="command-warning"><i class="fas fa-exclamation-triangle"></i> Warning: This discards uncommitted changes</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Metrics Section -->
+        <section class="metrics-section" id="metrics">
+            <h2><i class="fas fa-chart-bar"></i> Performance Metrics</h2>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-icon"><i class="fas fa-clock"></i></div>
+                    <div class="metric-value" id="avgDeployTime">1.8 min</div>
+                    <div class="metric-label">Avg Deploy Time</div>
+                    <div class="metric-trend positive">
+                        <i class="fas fa-arrow-down"></i> 15% faster
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon"><i class="fas fa-check-double"></i></div>
+                    <div class="metric-value">98.5%</div>
+                    <div class="metric-label">Success Rate</div>
+                    <div class="metric-trend positive">
+                        <i class="fas fa-arrow-up"></i> 2% increase
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon"><i class="fas fa-code-branch"></i></div>
+                    <div class="metric-value" id="totalCommits">247</div>
+                    <div class="metric-label">Total Commits</div>
+                    <div class="metric-trend neutral">
+                        <i class="fas fa-minus"></i> This month
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon"><i class="fas fa-bug"></i></div>
+                    <div class="metric-value">0</div>
+                    <div class="metric-label">Failed Builds</div>
+                    <div class="metric-trend positive">
+                        <i class="fas fa-check"></i> Last 7 days
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Links -->
+        <section class="quick-links">
+            <h2><i class="fas fa-link"></i> Quick Links</h2>
+            <div class="links-grid">
+                <a href="https://github.com" target="_blank" class="link-card">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub Repository</span>
+                </a>
+                <a href="https://github.com/features/actions" target="_blank" class="link-card">
+                    <i class="fas fa-cog"></i>
+                    <span>GitHub Actions</span>
+                </a>
+                <a href="https://www.ibm.com/cloud" target="_blank" class="link-card">
+                    <i class="fas fa-cloud"></i>
+                    <span>IBM Cloud</span>
+                </a>
+                <a href="https://docs.github.com/en/actions" target="_blank" class="link-card">
+                    <i class="fas fa-book"></i>
+                    <span>Documentation</span>
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p><i class="fas fa-code"></i> Built with IBM Design System</p>
+            <p class="footer-links">
+                <a href="#overview">Overview</a> •
+                <a href="#pipeline">Pipeline</a> •
+                <a href="#commands">Commands</a> •
+                <a href="#metrics">Metrics</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
