@@ -222,17 +222,14 @@ body {
 }
 
 .pipeline-container {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
     align-items: center;
-    justify-content: space-between;
+    gap: 0.5rem;
     margin-bottom: 2rem;
-    flex-wrap: wrap;
-    gap: 1rem;
 }
 
 .pipeline-stage {
-    flex: 1;
-    min-width: 200px;
     background: var(--ibm-gray-10);
     border-radius: 8px;
     padding: 1.5rem;
@@ -240,6 +237,10 @@ body {
     position: relative;
     transition: all 0.3s ease;
     border: 2px solid transparent;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .pipeline-stage:hover {
@@ -316,19 +317,22 @@ body {
 }
 
 .pipeline-connector {
-    width: 40px;
+    width: 100%;
     height: 2px;
     background: var(--ibm-gray-30);
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .pipeline-connector::after {
     content: '→';
     position: absolute;
-    right: -10px;
-    top: -10px;
     color: var(--ibm-gray-50);
-    font-size: 1.25rem;
+    font-size: 1.5rem;
+    background: var(--ibm-gray-10);
+    padding: 0 0.25rem;
 }
 
 .pipeline-controls {
@@ -718,20 +722,22 @@ code {
     }
 
     .pipeline-container {
-        flex-direction: column;
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
     }
 
     .pipeline-connector {
         width: 2px;
-        height: 40px;
+        height: 30px;
         margin: 0 auto;
+        background: var(--ibm-gray-30);
     }
 
     .pipeline-connector::after {
         content: '↓';
-        right: -8px;
-        top: auto;
-        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 50%;
     }
 
     .command-header {
