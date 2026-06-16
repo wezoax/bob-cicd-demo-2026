@@ -168,6 +168,18 @@ async function runPipeline() {
         },
         {
             stage: 4,
+            name: 'Security Scan',
+            logs: [
+                '🔒 Running security scan...',
+                '✓ Checking for vulnerabilities...',
+                '✓ Scanning dependencies...',
+                '✓ No security issues found',
+                '✓ Compliance checks passed'
+            ],
+            duration: 1800
+        },
+        {
+            stage: 5,
             name: 'Deploy',
             logs: [
                 '🚀 Preparing deployment...',
@@ -206,7 +218,7 @@ async function runPipeline() {
     
     // Final success message
     await addLog(pipelineLog, '\n🎉 Pipeline completed successfully!', 100);
-    await addLog(pipelineLog, '⏱️  Total time: 6.5 seconds', 100);
+    await addLog(pipelineLog, '⏱️  Total time: 8.3 seconds', 100);
     
     // Increment deploy count
     incrementDeployCount();
