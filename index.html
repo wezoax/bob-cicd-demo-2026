@@ -3,374 +3,521 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CI/CD Pipeline Demo - IBM Cloud</title>
+    <title>IBMTok - For You</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-brand">
-                <i class="fas fa-cloud"></i>
-                <span>IBM Cloud DevOps</span>
+    <!-- TikTok-style Navigation -->
+    <nav class="tiktok-nav">
+        <div class="nav-left">
+            <i class="fas fa-bars menu-icon"></i>
+        </div>
+        <div class="nav-center">
+            <div class="logo">
+                <i class="fas fa-music"></i>
+                <span class="logo-text">IBMTok</span>
             </div>
-            <div class="nav-links">
-                <a href="#overview">Overview</a>
-                <a href="#pipeline">Pipeline</a>
-                <a href="#commands">Commands</a>
-                <a href="#metrics">Metrics</a>
-            </div>
+        </div>
+        <div class="nav-right">
+            <i class="fas fa-search search-icon"></i>
         </div>
     </nav>
 
-    <div class="container">
-        <!-- Hero Section -->
-        <section class="hero" id="overview">
-            <div class="hero-content">
-                <h1>CI/CD Pipeline Automation</h1>
-                <p class="hero-subtitle">Streamline your development workflow with automated testing, building, and deployment</p>
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <div class="stat-value" id="deployCount">0</div>
-                        <div class="stat-label">Deployments</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value">99.9%</div>
-                        <div class="stat-label">Uptime</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value">< 2min</div>
-                        <div class="stat-label">Deploy Time</div>
-                    </div>
-                </div>
+    <!-- Main Content Area -->
+    <div class="main-container">
+        <!-- Left Sidebar -->
+        <aside class="sidebar-left">
+            <div class="sidebar-item active">
+                <i class="fas fa-home"></i>
+                <span>For You</span>
             </div>
-        </section>
-
-        <!-- Status Dashboard -->
-        <section class="status-dashboard">
-            <h2><i class="fas fa-chart-line"></i> System Status</h2>
-            <div class="status-grid">
-                <div class="status-card">
-                    <div class="status-header">
-                        <i class="fas fa-code-branch"></i>
-                        <span>Repository</span>
-                    </div>
-                    <div class="status-value status-success">
-                        <i class="fas fa-check-circle"></i> Connected
-                    </div>
-                    <div class="status-detail">Last commit: <span id="lastCommit">Just now</span></div>
-                </div>
-                <div class="status-card">
-                    <div class="status-header">
-                        <i class="fas fa-vial"></i>
-                        <span>Tests</span>
-                    </div>
-                    <div class="status-value status-success">
-                        <i class="fas fa-check-circle"></i> Passing
-                    </div>
-                    <div class="status-detail">Coverage: 95%</div>
-                </div>
-                <div class="status-card">
-                    <div class="status-header">
-                        <i class="fas fa-rocket"></i>
-                        <span>Deployment</span>
-                    </div>
-                    <div class="status-value status-success">
-                        <i class="fas fa-check-circle"></i> Live
-                    </div>
-                    <div class="status-detail">Environment: Production</div>
-                </div>
-                <div class="status-card">
-                    <div class="status-header">
-                        <i class="fas fa-shield-alt"></i>
-                        <span>Security</span>
-                    </div>
-                    <div class="status-value status-success">
-                        <i class="fas fa-check-circle"></i> Secure
-                    </div>
-                    <div class="status-detail">No vulnerabilities</div>
-                </div>
+            <div class="sidebar-item">
+                <i class="fas fa-fire"></i>
+                <span>Trending</span>
             </div>
-        </section>
-
-        <!-- Interactive Pipeline -->
-        <section class="pipeline-section" id="pipeline">
-            <h2><i class="fas fa-project-diagram"></i> CI/CD Pipeline</h2>
-            <div class="pipeline-container">
-                <div class="pipeline-stage" data-stage="1">
-                    <div class="stage-number">1</div>
-                    <div class="stage-content">
-                        <i class="fas fa-code"></i>
-                        <h3>Code Commit</h3>
-                        <p>Developer pushes code to repository</p>
-                        <div class="stage-status">Ready</div>
-                    </div>
-                </div>
-                <div class="pipeline-connector"></div>
-                <div class="pipeline-stage" data-stage="2">
-                    <div class="stage-number">2</div>
-                    <div class="stage-content">
-                        <i class="fas fa-vial"></i>
-                        <h3>Run Tests</h3>
-                        <p>Automated unit & integration tests</p>
-                        <div class="stage-status">Ready</div>
-                    </div>
-                </div>
-                <div class="pipeline-connector"></div>
-                <div class="pipeline-stage" data-stage="3">
-                    <div class="stage-number">3</div>
-                    <div class="stage-content">
-                        <i class="fas fa-hammer"></i>
-                        <h3>Build</h3>
-                        <p>Compile and package application</p>
-                        <div class="stage-status">Ready</div>
-                    </div>
-                </div>
-                <div class="pipeline-connector"></div>
-                <div class="pipeline-stage" data-stage="4">
-                    <div class="stage-number">4</div>
-                    <div class="stage-content">
-                        <i class="fas fa-shield-alt"></i>
-                        <h3>Security Scan</h3>
-                        <p>Vulnerability & compliance checks</p>
-                        <div class="stage-status">Ready</div>
-                    </div>
-                </div>
-                <div class="pipeline-connector"></div>
-                <div class="pipeline-stage" data-stage="5">
-                    <div class="stage-number">5</div>
-                    <div class="stage-content">
-                        <i class="fas fa-rocket"></i>
-                        <h3>Deploy</h3>
-                        <p>Release to production environment</p>
-                        <div class="stage-status">Ready</div>
-                    </div>
-                </div>
+            <div class="sidebar-item">
+                <i class="fas fa-users"></i>
+                <span>Following</span>
             </div>
-            <div class="pipeline-controls">
-                <button id="runPipelineBtn" class="btn-primary">
-                    <i class="fas fa-play"></i> Run Pipeline
-                </button>
-                <button id="resetPipelineBtn" class="btn-secondary">
-                    <i class="fas fa-redo"></i> Reset
-                </button>
+            <div class="sidebar-item">
+                <i class="fas fa-heart"></i>
+                <span>Liked</span>
             </div>
-            <div id="pipelineLog" class="pipeline-log"></div>
-        </section>
-
-        <!-- Git Commands Section -->
-        <section class="commands-section" id="commands">
-            <h2><i class="fas fa-terminal"></i> Git Commands Reference</h2>
-            <p class="section-description">Copy and run these commands in your terminal to trigger the CI/CD pipeline</p>
-            
-            <div class="command-tabs">
-                <button class="tab-btn active" data-tab="basic">Basic Workflow</button>
-                <button class="tab-btn" data-tab="advanced">Advanced</button>
-                <button class="tab-btn" data-tab="troubleshoot">Troubleshooting</button>
+            <div class="sidebar-item">
+                <i class="fas fa-bookmark"></i>
+                <span>Saved</span>
             </div>
+        </aside>
 
-            <div class="tab-content active" id="basic">
-                <div class="command-card">
-                    <div class="command-header">
-                        <h3>1. Make Changes & Commit</h3>
-                        <button class="copy-btn" data-command="git add .&#10;git commit -m 'Update: your changes'">
-                            <i class="fas fa-copy"></i> Copy
-                        </button>
+        <!-- Center Feed -->
+        <main class="feed-container">
+            <!-- Video Card 1 -->
+            <div class="video-card hero-card">
+                <div class="card-header">
+                    <div class="user-info">
+                        <div class="avatar">
+                            <i class="fas fa-cat"></i>
+                        </div>
+                        <div class="user-details">
+                            <h3>@techcat_daily</h3>
+                            <p>Tech Cat · <span id="timeAgo">2h ago</span></p>
+                        </div>
                     </div>
-                    <pre><code>git add .
-git commit -m "Update: your changes"</code></pre>
-                    <p class="command-description">Stage and commit your changes locally</p>
+                    <button class="follow-btn">Follow</button>
                 </div>
-
-                <div class="command-card">
-                    <div class="command-header">
-                        <h3>2. Push to GitHub (Triggers Pipeline)</h3>
-                        <button class="copy-btn" data-command="git push origin main">
-                            <i class="fas fa-copy"></i> Copy
-                        </button>
+                <div class="card-content">
+                    <div class="video-container">
+                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&h=800&fit=crop" alt="Coding setup" class="content-media">
+                        <div class="play-overlay">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
                     </div>
-                    <pre><code>git push origin main</code></pre>
-                    <p class="command-description">Push to main branch - this automatically triggers the CI/CD pipeline</p>
+                    <h2 class="content-title">🎮 When you finally fix that bug at 3AM</h2>
+                    <p class="content-description">POV: Your code actually works on the first try 😱 #coding #developer #techlife</p>
+                    <div class="stats-row">
+                        <div class="stat-box">
+                            <div class="stat-number" id="deployCount">1.2M</div>
+                            <div class="stat-label">Views</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">45.2K</div>
+                            <div class="stat-label">Likes</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">892</div>
+                            <div class="stat-label">Comments</div>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="command-card">
-                    <div class="command-header">
-                        <h3>3. Check Pipeline Status</h3>
-                        <button class="copy-btn" data-command="gh run list">
-                            <i class="fas fa-copy"></i> Copy
-                        </button>
-                    </div>
-                    <pre><code>gh run list</code></pre>
-                    <p class="command-description">View recent workflow runs (requires GitHub CLI)</p>
+                <div class="card-actions">
+                    <button class="action-btn">
+                        <i class="fas fa-heart"></i>
+                        <span>45.2K</span>
+                    </button>
+                    <button class="action-btn">
+                        <i class="fas fa-comment"></i>
+                        <span>892</span>
+                    </button>
+                    <button class="action-btn">
+                        <i class="fas fa-share"></i>
+                        <span>Share</span>
+                    </button>
                 </div>
             </div>
 
-            <div class="tab-content" id="advanced">
-                <div class="command-card">
-                    <div class="command-header">
-                        <h3>Create Feature Branch</h3>
-                        <button class="copy-btn" data-command="git checkout -b feature/new-feature">
-                            <i class="fas fa-copy"></i> Copy
-                        </button>
+            <!-- Video Card 2 -->
+            <div class="video-card">
+                <div class="card-header">
+                    <div class="user-info">
+                        <div class="avatar status-avatar">
+                            <i class="fas fa-pizza-slice"></i>
+                        </div>
+                        <div class="user-details">
+                            <h3>@foodie_adventures</h3>
+                            <p>Food Explorer · 5h ago</p>
+                        </div>
                     </div>
-                    <pre><code>git checkout -b feature/new-feature</code></pre>
+                    <button class="follow-btn">Follow</button>
                 </div>
-
-                <div class="command-card">
-                    <div class="command-header">
-                        <h3>Push Feature Branch</h3>
-                        <button class="copy-btn" data-command="git push origin feature/new-feature">
-                            <i class="fas fa-copy"></i> Copy
-                        </button>
+                <div class="card-content">
+                    <div class="video-container">
+                        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600&h=800&fit=crop" alt="Delicious pizza" class="content-media">
+                        <div class="play-overlay">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                        <div class="video-duration">0:45</div>
                     </div>
-                    <pre><code>git push origin feature/new-feature</code></pre>
+                    <h2 class="content-title">🍕 Making the PERFECT pizza at home!</h2>
+                    <p class="content-description">Secret ingredient revealed! 🤫 #cooking #pizza #foodtok #recipe</p>
+                    <div class="status-grid-tiktok">
+                        <div class="status-item">
+                            <i class="fas fa-fire status-icon"></i>
+                            <div class="status-info">
+                                <h4>Difficulty</h4>
+                                <p class="status-success">✓ Easy</p>
+                                <span class="status-detail">30 mins</span>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <i class="fas fa-star status-icon"></i>
+                            <div class="status-info">
+                                <h4>Rating</h4>
+                                <p class="status-success">✓ 5/5</p>
+                                <span class="status-detail">2.1K reviews</span>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <i class="fas fa-users status-icon"></i>
+                            <div class="status-info">
+                                <h4>Serves</h4>
+                                <p class="status-success">✓ 4 people</p>
+                                <span class="status-detail">Perfect size</span>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <i class="fas fa-dollar-sign status-icon"></i>
+                            <div class="status-info">
+                                <h4>Cost</h4>
+                                <p class="status-success">✓ Budget</p>
+                                <span class="status-detail">Under $15</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="command-card">
-                    <div class="command-header">
-                        <h3>View Workflow Logs</h3>
-                        <button class="copy-btn" data-command="gh run view --log">
-                            <i class="fas fa-copy"></i> Copy
-                        </button>
-                    </div>
-                    <pre><code>gh run view --log</code></pre>
+                <div class="card-actions">
+                    <button class="action-btn">
+                        <i class="fas fa-heart"></i>
+                        <span>89.5K</span>
+                    </button>
+                    <button class="action-btn">
+                        <i class="fas fa-comment"></i>
+                        <span>1.2K</span>
+                    </button>
+                    <button class="action-btn">
+                        <i class="fas fa-share"></i>
+                        <span>Share</span>
+                    </button>
                 </div>
+            </div>
 
-                <div class="command-card">
-                    <div class="command-header">
-                        <h3>Trigger Manual Workflow</h3>
-                        <button class="copy-btn" data-command="gh workflow run deploy.yml">
-                            <i class="fas fa-copy"></i> Copy
+            <!-- Interactive Demo Card (Hidden DevOps) -->
+            <div class="video-card pipeline-card" id="pipeline">
+                <div class="card-header">
+                    <div class="user-info">
+                        <div class="avatar pipeline-avatar">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="user-details">
+                            <h3>@ibm_cloud</h3>
+                            <p>IBM Cloud · 1h ago</p>
+                        </div>
+                    </div>
+                    <button class="follow-btn">Follow</button>
+                </div>
+                    <div class="video-container">
+                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=800&fit=crop" alt="Tech automation" class="content-media">
+                        <div class="play-overlay">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                        <div class="video-duration">1:23</div>
+                    </div>
+                <div class="card-content">
+                    <h2 class="content-title">⚡ Deploy your app in 5 steps!</h2>
+                    <p class="content-description">Watch how fast you can go from code to production 🚀 #tech #cloud #automation</p>
+                    <div class="pipeline-flow">
+                        <div class="flow-stage" data-stage="1">
+                            <div class="stage-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <h4>Code</h4>
+                            <p>Write it</p>
+                            <div class="stage-badge">Ready</div>
+                        </div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-stage" data-stage="2">
+                            <div class="stage-icon">
+                                <i class="fas fa-vial"></i>
+                            </div>
+                            <h4>Test</h4>
+                            <p>Check it</p>
+                            <div class="stage-badge">Ready</div>
+                        </div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-stage" data-stage="3">
+                            <div class="stage-icon">
+                                <i class="fas fa-hammer"></i>
+                            </div>
+                            <h4>Build</h4>
+                            <p>Pack it</p>
+                            <div class="stage-badge">Ready</div>
+                        </div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-stage" data-stage="4">
+                            <div class="stage-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h4>Secure</h4>
+                            <p>Lock it</p>
+                            <div class="stage-badge">Ready</div>
+                        </div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-stage" data-stage="5">
+                            <div class="stage-icon">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <h4>Deploy</h4>
+                            <p>Ship it</p>
+                            <div class="stage-badge">Ready</div>
+                        </div>
+                    </div>
+                    <div class="pipeline-controls-tiktok">
+                        <button id="runPipelineBtn" class="tiktok-btn primary">
+                            <i class="fas fa-play"></i> Watch Demo
+                        </button>
+                        <button id="resetPipelineBtn" class="tiktok-btn secondary">
+                            <i class="fas fa-redo"></i> Reset
                         </button>
                     </div>
-                    <pre><code>gh workflow run deploy.yml</code></pre>
+                    <div id="pipelineLog" class="pipeline-log-tiktok"></div>
+                </div>
+                <div class="card-actions">
+                    <button class="action-btn">
+                        <i class="fas fa-heart"></i>
+                        <span>12.8K</span>
+                    </button>
+                    <button class="action-btn">
+                        <i class="fas fa-comment"></i>
+                        <span>234</span>
+                    </button>
+                    <button class="action-btn">
+                        <i class="fas fa-share"></i>
+                        <span>Share</span>
+                    </button>
                 </div>
             </div>
 
-            <div class="tab-content" id="troubleshoot">
-                <div class="command-card">
-                    <div class="command-header">
-                        <h3>Check Git Status</h3>
-                        <button class="copy-btn" data-command="git status">
-                            <i class="fas fa-copy"></i> Copy
-                        </button>
+            <!-- Video Card 3 -->
+            <div class="video-card" id="commands">
+                <div class="card-header">
+                    <div class="user-info">
+                        <div class="avatar commands-avatar">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <div class="user-details">
+                            <h3>@fitness_guru</h3>
+                            <p>Fitness Coach · 3h ago</p>
+                        </div>
                     </div>
-                    <pre><code>git status</code></pre>
+                    <button class="follow-btn">Follow</button>
                 </div>
-
-                <div class="command-card">
-                    <div class="command-header">
-                        <h3>View Recent Commits</h3>
-                        <button class="copy-btn" data-command="git log --oneline -5">
-                            <i class="fas fa-copy"></i> Copy
-                        </button>
+                    <div class="video-container">
+                        <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&h=800&fit=crop" alt="Fitness workout" class="content-media">
+                        <div class="play-overlay">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                        <div class="video-duration">5:12</div>
                     </div>
-                    <pre><code>git log --oneline -5</code></pre>
+                <div class="card-content">
+                    <h2 class="content-title">💪 5-Minute Morning Workout</h2>
+                    <p class="content-description">No equipment needed! Start your day right 🌅 #fitness #workout #morning</p>
+                    <div class="command-tabs-tiktok">
+                        <button class="tab-btn-tiktok active" data-tab="basic">Beginner</button>
+                        <button class="tab-btn-tiktok" data-tab="advanced">Advanced</button>
+                        <button class="tab-btn-tiktok" data-tab="troubleshoot">Tips</button>
+                    </div>
+                    
+                    <div class="tab-content-tiktok active" id="basic">
+                        <div class="command-item">
+                            <div class="command-title">
+                                <span>1. Jumping Jacks</span>
+                                <button class="copy-btn-tiktok" data-command="30 seconds - Get your heart pumping!">
+                                    <i class="fas fa-bookmark"></i>
+                                </button>
+                            </div>
+                            <pre><code>30 seconds
+Get your heart pumping! 💓</code></pre>
+                        </div>
+                        <div class="command-item">
+                            <div class="command-title">
+                                <span>2. Push-ups</span>
+                                <button class="copy-btn-tiktok" data-command="10 reps - Build that strength!">
+                                    <i class="fas fa-bookmark"></i>
+                                </button>
+                            </div>
+                            <pre><code>10 reps
+Build that strength! 💪</code></pre>
+                        </div>
+                        <div class="command-item">
+                            <div class="command-title">
+                                <span>3. Squats</span>
+                                <button class="copy-btn-tiktok" data-command="15 reps - Leg day everyday!">
+                                    <i class="fas fa-bookmark"></i>
+                                </button>
+                            </div>
+                            <pre><code>15 reps
+Leg day everyday! 🦵</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="tab-content-tiktok" id="advanced">
+                        <div class="command-item">
+                            <div class="command-title">
+                                <span>Burpees</span>
+                                <button class="copy-btn-tiktok" data-command="20 reps - Full body burn!">
+                                    <i class="fas fa-bookmark"></i>
+                                </button>
+                            </div>
+                            <pre><code>20 reps
+Full body burn! 🔥</code></pre>
+                        </div>
+                        <div class="command-item">
+                            <div class="command-title">
+                                <span>Mountain Climbers</span>
+                                <button class="copy-btn-tiktok" data-command="45 seconds - Core crusher!">
+                                    <i class="fas fa-bookmark"></i>
+                                </button>
+                            </div>
+                            <pre><code>45 seconds
+Core crusher! 💥</code></pre>
+                        </div>
+                        <div class="command-item">
+                            <div class="command-title">
+                                <span>Plank Hold</span>
+                                <button class="copy-btn-tiktok" data-command="60 seconds - You got this!">
+                                    <i class="fas fa-bookmark"></i>
+                                </button>
+                            </div>
+                            <pre><code>60 seconds
+You got this! 🎯</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="tab-content-tiktok" id="troubleshoot">
+                        <div class="command-item">
+                            <div class="command-title">
+                                <span>Stay Hydrated</span>
+                                <button class="copy-btn-tiktok" data-command="Drink water before and after!">
+                                    <i class="fas fa-bookmark"></i>
+                                </button>
+                            </div>
+                            <pre><code>💧 Drink water
+Before and after!</code></pre>
+                        </div>
+                        <div class="command-item">
+                            <div class="command-title">
+                                <span>Warm Up First</span>
+                                <button class="copy-btn-tiktok" data-command="5 minutes of light stretching">
+                                    <i class="fas fa-bookmark"></i>
+                                </button>
+                            </div>
+                            <pre><code>🤸 Stretch it out
+5 minutes warm-up</code></pre>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="command-card">
-                    <div class="command-header">
-                        <h3>Force Push (Use Carefully!)</h3>
-                        <button class="copy-btn" data-command="git push origin main --force">
-                            <i class="fas fa-copy"></i> Copy
-                        </button>
-                    </div>
-                    <pre><code>git push origin main --force</code></pre>
-                    <p class="command-warning"><i class="fas fa-exclamation-triangle"></i> Warning: This overwrites remote history</p>
-                </div>
-
-                <div class="command-card">
-                    <div class="command-header">
-                        <h3>Reset to Last Commit</h3>
-                        <button class="copy-btn" data-command="git reset --hard HEAD~1">
-                            <i class="fas fa-copy"></i> Copy
-                        </button>
-                    </div>
-                    <pre><code>git reset --hard HEAD~1</code></pre>
-                    <p class="command-warning"><i class="fas fa-exclamation-triangle"></i> Warning: This discards uncommitted changes</p>
+                <div class="card-actions">
+                    <button class="action-btn">
+                        <i class="fas fa-heart"></i>
+                        <span>156K</span>
+                    </button>
+                    <button class="action-btn">
+                        <i class="fas fa-comment"></i>
+                        <span>2.3K</span>
+                    </button>
+                    <button class="action-btn">
+                        <i class="fas fa-share"></i>
+                        <span>Share</span>
+                    </button>
                 </div>
             </div>
-        </section>
 
-        <!-- Metrics Section -->
-        <section class="metrics-section" id="metrics">
-            <h2><i class="fas fa-chart-bar"></i> Performance Metrics</h2>
-            <div class="metrics-grid">
-                <div class="metric-card">
-                    <div class="metric-icon"><i class="fas fa-clock"></i></div>
-                    <div class="metric-value" id="avgDeployTime">1.8 min</div>
-                    <div class="metric-label">Avg Deploy Time</div>
-                    <div class="metric-trend positive">
-                        <i class="fas fa-arrow-down"></i> 15% faster
+            <!-- Video Card 4 -->
+            <div class="video-card" id="metrics">
+                <div class="card-header">
+                    <div class="user-info">
+                        <div class="avatar metrics-avatar">
+                            <i class="fas fa-plane"></i>
+                        </div>
+                        <div class="user-details">
+                            <h3>@travel_diaries</h3>
+                            <p>World Traveler · 4h ago</p>
+                        </div>
+                    </div>
+                    <button class="follow-btn">Follow</button>
+                </div>
+                    <div class="video-container">
+                        <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600&h=800&fit=crop" alt="Travel adventure" class="content-media">
+                        <div class="play-overlay">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                        <div class="video-duration">2:34</div>
+                    </div>
+                <div class="card-content">
+                    <h2 class="content-title">✈️ My 2024 Travel Stats!</h2>
+                    <p class="content-description">Can't believe I visited this many places! 🌍 #travel #wanderlust #adventure</p>
+                    <div class="metrics-grid-tiktok">
+                        <div class="metric-box">
+                            <i class="fas fa-map-marked-alt metric-icon-tiktok"></i>
+                            <div class="metric-value-tiktok" id="avgDeployTime">23</div>
+                            <div class="metric-label-tiktok">Countries</div>
+                            <div class="metric-trend-tiktok positive">↑ 8 new this year</div>
+                        </div>
+                        <div class="metric-box">
+                            <i class="fas fa-camera metric-icon-tiktok"></i>
+                            <div class="metric-value-tiktok">12.5K</div>
+                            <div class="metric-label-tiktok">Photos</div>
+                            <div class="metric-trend-tiktok positive">↑ Best memories</div>
+                        </div>
+                        <div class="metric-box">
+                            <i class="fas fa-utensils metric-icon-tiktok"></i>
+                            <div class="metric-value-tiktok" id="totalCommits">247</div>
+                            <div class="metric-label-tiktok">New Foods</div>
+                            <div class="metric-trend-tiktok neutral">So delicious!</div>
+                        </div>
+                        <div class="metric-box">
+                            <i class="fas fa-heart metric-icon-tiktok"></i>
+                            <div class="metric-value-tiktok">∞</div>
+                            <div class="metric-label-tiktok">Memories</div>
+                            <div class="metric-trend-tiktok positive">✓ Priceless</div>
+                        </div>
                     </div>
                 </div>
-                <div class="metric-card">
-                    <div class="metric-icon"><i class="fas fa-check-double"></i></div>
-                    <div class="metric-value">98.5%</div>
-                    <div class="metric-label">Success Rate</div>
-                    <div class="metric-trend positive">
-                        <i class="fas fa-arrow-up"></i> 2% increase
-                    </div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-icon"><i class="fas fa-code-branch"></i></div>
-                    <div class="metric-value" id="totalCommits">247</div>
-                    <div class="metric-label">Total Commits</div>
-                    <div class="metric-trend neutral">
-                        <i class="fas fa-minus"></i> This month
-                    </div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-icon"><i class="fas fa-bug"></i></div>
-                    <div class="metric-value">0</div>
-                    <div class="metric-label">Failed Builds</div>
-                    <div class="metric-trend positive">
-                        <i class="fas fa-check"></i> Last 7 days
-                    </div>
+                <div class="card-actions">
+                    <button class="action-btn">
+                        <i class="fas fa-heart"></i>
+                        <span>234K</span>
+                    </button>
+                    <button class="action-btn">
+                        <i class="fas fa-comment"></i>
+                        <span>5.6K</span>
+                    </button>
+                    <button class="action-btn">
+                        <i class="fas fa-share"></i>
+                        <span>Share</span>
+                    </button>
                 </div>
             </div>
-        </section>
+        </main>
 
-        <!-- Quick Links -->
-        <section class="quick-links">
-            <h2><i class="fas fa-link"></i> Quick Links</h2>
-            <div class="links-grid">
-                <a href="https://github.com" target="_blank" class="link-card">
-                    <i class="fab fa-github"></i>
-                    <span>GitHub Repository</span>
-                </a>
-                <a href="https://github.com/features/actions" target="_blank" class="link-card">
-                    <i class="fas fa-cog"></i>
-                    <span>GitHub Actions</span>
-                </a>
-                <a href="https://www.ibm.com/cloud" target="_blank" class="link-card">
-                    <i class="fas fa-cloud"></i>
-                    <span>IBM Cloud</span>
-                </a>
-                <a href="https://docs.github.com/en/actions" target="_blank" class="link-card">
-                    <i class="fas fa-book"></i>
-                    <span>Documentation</span>
-                </a>
+        <!-- Right Sidebar -->
+        <aside class="sidebar-right">
+            <div class="trending-section">
+                <h3>🔥 Trending</h3>
+                <div class="trending-item">
+                    <span class="trend-tag">#FoodTok</span>
+                    <span class="trend-count">12.5M posts</span>
+                </div>
+                <div class="trending-item">
+                    <span class="trend-tag">#FitnessGoals</span>
+                    <span class="trend-count">8.2M posts</span>
+                </div>
+                <div class="trending-item">
+                    <span class="trend-tag">#TravelTok</span>
+                    <span class="trend-count">6.7M posts</span>
+                </div>
+                <div class="trending-item">
+                    <span class="trend-tag">#TechTips</span>
+                    <span class="trend-count">5.1M posts</span>
+                </div>
+                <div class="trending-item">
+                    <span class="trend-tag">#LifeHacks</span>
+                    <span class="trend-count">4.3M posts</span>
+                </div>
             </div>
-        </section>
+            <div class="footer-tiktok">
+                <p>Powered by <strong>IBM Cloud</strong></p>
+                <p class="footer-links-tiktok">
+                    <a href="#" target="_blank">About</a> ·
+                    <a href="#" target="_blank">Help</a> ·
+                    <a href="#" target="_blank">Privacy</a>
+                </p>
+            </div>
+        </aside>
     </div>
 
     <!-- Toast Notification -->
-    <div id="toast" class="toast"></div>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <p><i class="fas fa-code"></i> Built with IBM Design System</p>
-            <p class="footer-links">
-                <a href="#overview">Overview</a> •
-                <a href="#pipeline">Pipeline</a> •
-                <a href="#commands">Commands</a> •
-                <a href="#metrics">Metrics</a>
-            </p>
-        </div>
-    </footer>
+    <div id="toast" class="toast-tiktok"></div>
 
     <script src="script.js"></script>
 </body>

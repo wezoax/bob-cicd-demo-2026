@@ -1,4 +1,4 @@
-// Initialize on page load
+// IBMTok - TikTok-inspired CI/CD Platform
 document.addEventListener('DOMContentLoaded', function() {
     initializeApp();
     setupEventListeners();
@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function initializeApp() {
     updateLastCommit();
     loadDeployCount();
+    updateTimeAgo();
 }
 
 // Setup all event listeners
@@ -26,7 +27,7 @@ function setupEventListeners() {
     }
     
     // Tab switching
-    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabButtons = document.querySelectorAll('.tab-btn-tiktok');
     tabButtons.forEach(btn => {
         btn.addEventListener('click', function() {
             switchTab(this.dataset.tab);
@@ -34,23 +35,45 @@ function setupEventListeners() {
     });
     
     // Copy buttons
-    const copyButtons = document.querySelectorAll('.copy-btn');
+    const copyButtons = document.querySelectorAll('.copy-btn-tiktok');
     copyButtons.forEach(btn => {
         btn.addEventListener('click', function() {
             copyCommand(this);
         });
     });
     
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+    // Sidebar items
+    const sidebarItems = document.querySelectorAll('.sidebar-item');
+    sidebarItems.forEach(item => {
+        item.addEventListener('click', function() {
+            sidebarItems.forEach(i => i.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+    
+    // Action buttons (like, comment, share)
+    const actionButtons = document.querySelectorAll('.action-btn');
+    // Video container interactions
+    const videoContainers = document.querySelectorAll('.video-container');
+    videoContainers.forEach(container => {
+        container.addEventListener('click', function() {
+            const playOverlay = this.querySelector('.play-overlay');
+            if (playOverlay) {
+                playOverlay.style.opacity = '0';
+                setTimeout(() => {
+                    playOverlay.style.opacity = '0.9';
+                }, 300);
+            }
+            showToast('Video playing! 🎬', 'success');
+        });
+    });
+    
+    actionButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const icon = this.querySelector('i');
+            if (icon.classList.contains('fa-heart')) {
+                icon.style.color = icon.style.color === 'rgb(254, 44, 85)' ? '' : '#fe2c55';
+                showToast('Liked! ❤️', 'success');
             }
         });
     });
@@ -60,20 +83,16 @@ function setupEventListeners() {
 function updateLastCommit() {
     const lastCommitElement = document.getElementById('lastCommit');
     if (lastCommitElement) {
-        const now = new Date();
-        const timeAgo = getTimeAgo(now);
-        lastCommitElement.textContent = timeAgo;
+        lastCommitElement.textContent = 'Just now';
     }
 }
 
-// Get time ago string
-function getTimeAgo(date) {
-    const seconds = Math.floor((new Date() - date) / 1000);
-    
-    if (seconds < 60) return 'Just now';
-    if (seconds < 3600) return Math.floor(seconds / 60) + ' minutes ago';
-    if (seconds < 86400) return Math.floor(seconds / 3600) + ' hours ago';
-    return Math.floor(seconds / 86400) + ' days ago';
+// Update time ago
+function updateTimeAgo() {
+    const timeAgoElement = document.getElementById('timeAgo');
+    if (timeAgoElement) {
+        timeAgoElement.textContent = '2h ago';
+    }
 }
 
 // Load deploy count from localStorage
@@ -118,7 +137,7 @@ async function runPipeline() {
     const runBtn = document.getElementById('runPipelineBtn');
     const resetBtn = document.getElementById('resetPipelineBtn');
     const pipelineLog = document.getElementById('pipelineLog');
-    const stages = document.querySelectorAll('.pipeline-stage');
+    const stages = document.querySelectorAll('.flow-stage');
     
     // Disable buttons
     runBtn.disabled = true;
@@ -198,7 +217,7 @@ async function runPipeline() {
         
         // Mark stage as active
         stage.classList.add('active');
-        stage.querySelector('.stage-status').textContent = 'Running...';
+        stage.querySelector('.stage-badge').textContent = 'Running...';
         
         // Add logs
         for (const log of stageData.logs) {
@@ -211,7 +230,7 @@ async function runPipeline() {
         // Mark stage as completed
         stage.classList.remove('active');
         stage.classList.add('completed');
-        stage.querySelector('.stage-status').textContent = 'Completed';
+        stage.querySelector('.stage-badge').textContent = 'Done ✓';
         
         await addLog(pipelineLog, `\n✅ ${stageData.name} completed\n`, 100);
     }
@@ -224,7 +243,7 @@ async function runPipeline() {
     incrementDeployCount();
     
     // Show success toast
-    showToast('Pipeline completed successfully!', 'success');
+    showToast('🚀 Pipeline deployed successfully!', 'success');
     
     // Enable buttons
     runBtn.disabled = false;
@@ -233,18 +252,18 @@ async function runPipeline() {
 
 // Reset pipeline
 function resetPipeline() {
-    const stages = document.querySelectorAll('.pipeline-stage');
+    const stages = document.querySelectorAll('.flow-stage');
     const pipelineLog = document.getElementById('pipelineLog');
     
     stages.forEach(stage => {
         stage.classList.remove('active', 'completed', 'failed');
-        stage.querySelector('.stage-status').textContent = 'Ready';
+        stage.querySelector('.stage-badge').textContent = 'Ready';
     });
     
     pipelineLog.classList.remove('active');
     pipelineLog.innerHTML = '';
     
-    showToast('Pipeline reset', 'success');
+    showToast('Pipeline reset ✨', 'success');
 }
 
 // Add log entry
@@ -268,7 +287,7 @@ function sleep(ms) {
 // Switch tabs
 function switchTab(tabName) {
     // Update tab buttons
-    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabButtons = document.querySelectorAll('.tab-btn-tiktok');
     tabButtons.forEach(btn => {
         if (btn.dataset.tab === tabName) {
             btn.classList.add('active');
@@ -278,7 +297,7 @@ function switchTab(tabName) {
     });
     
     // Update tab content
-    const tabContents = document.querySelectorAll('.tab-content');
+    const tabContents = document.querySelectorAll('.tab-content-tiktok');
     tabContents.forEach(content => {
         if (content.id === tabName) {
             content.classList.add('active');
@@ -307,11 +326,11 @@ function copyCommand(button) {
         
         // Update button
         const originalHTML = button.innerHTML;
-        button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        button.innerHTML = '<i class="fas fa-check"></i>';
         button.classList.add('copied');
         
         // Show toast
-        showToast('Command copied to clipboard!', 'success');
+        showToast('Copied to clipboard! 📋', 'success');
         
         // Reset button after 2 seconds
         setTimeout(() => {
@@ -319,7 +338,7 @@ function copyCommand(button) {
             button.classList.remove('copied');
         }, 2000);
     } catch (err) {
-        showToast('Failed to copy command', 'error');
+        showToast('Failed to copy ❌', 'error');
     }
     
     // Remove textarea
@@ -332,7 +351,7 @@ function showToast(message, type = 'success') {
     
     // Set message and type
     toast.textContent = message;
-    toast.className = 'toast show';
+    toast.className = 'toast-tiktok show';
     
     if (type === 'success') {
         toast.classList.add('success');
@@ -357,12 +376,13 @@ function updateMetrics() {
     // Update every 30 seconds
     setInterval(() => {
         updateLastCommit();
+        updateTimeAgo();
     }, 30000);
 }
 
 // Add hover effects to cards
 document.addEventListener('DOMContentLoaded', function() {
-    const cards = document.querySelectorAll('.status-card, .metric-card, .link-card');
+    const cards = document.querySelectorAll('.video-card');
     
     cards.forEach(card => {
         card.addEventListener('mouseenter', function() {
@@ -394,7 +414,7 @@ document.addEventListener('keydown', function(e) {
 
 // Add visual feedback for pipeline stages
 document.addEventListener('DOMContentLoaded', function() {
-    const stages = document.querySelectorAll('.pipeline-stage');
+    const stages = document.querySelectorAll('.flow-stage');
     
     stages.forEach((stage, index) => {
         stage.style.animationDelay = `${index * 0.1}s`;
@@ -402,10 +422,11 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Console easter egg
-console.log('%c🚀 CI/CD Pipeline Demo', 'font-size: 20px; font-weight: bold; color: #0f62fe;');
-console.log('%cKeyboard Shortcuts:', 'font-size: 14px; font-weight: bold; color: #24a148;');
+console.log('%c🚀 IBMTok - DevOps Platform', 'font-size: 24px; font-weight: bold; background: linear-gradient(45deg, #fe2c55, #25f4ee); -webkit-background-clip: text; -webkit-text-fill-color: transparent;');
+console.log('%c✨ TikTok-inspired CI/CD Pipeline', 'font-size: 16px; color: #25f4ee;');
+console.log('%cKeyboard Shortcuts:', 'font-size: 14px; font-weight: bold; color: #fe2c55;');
 console.log('Ctrl/Cmd + Enter: Run Pipeline');
 console.log('Ctrl/Cmd + R: Reset Pipeline');
-console.log('\n%cBuilt with IBM Design System', 'font-size: 12px; color: #8d8d8d;');
+console.log('\n%cPowered by IBM Cloud 💙', 'font-size: 12px; color: #a0a0a0;');
 
 // Made with Bob

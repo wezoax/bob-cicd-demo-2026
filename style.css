@@ -1,20 +1,16 @@
-/* IBM Design System Colors */
+/* IBMTok - TikTok-inspired Theme */
 :root {
-    --ibm-blue: #0f62fe;
-    --ibm-blue-dark: #0043ce;
-    --ibm-blue-light: #4589ff;
-    --ibm-gray-10: #f4f4f4;
-    --ibm-gray-20: #e0e0e0;
-    --ibm-gray-30: #c6c6c6;
-    --ibm-gray-50: #8d8d8d;
-    --ibm-gray-70: #525252;
-    --ibm-gray-90: #262626;
-    --ibm-gray-100: #161616;
-    --ibm-white: #ffffff;
-    --ibm-green: #24a148;
-    --ibm-red: #da1e28;
-    --ibm-yellow: #f1c21b;
-    --ibm-purple: #8a3ffc;
+    --tiktok-black: #000000;
+    --tiktok-dark: #121212;
+    --tiktok-gray: #1a1a1a;
+    --tiktok-pink: #fe2c55;
+    --tiktok-cyan: #25f4ee;
+    --tiktok-blue: #0f62fe;
+    --tiktok-white: #ffffff;
+    --tiktok-text-gray: #a0a0a0;
+    --tiktok-border: #2a2a2a;
+    --tiktok-success: #00ff88;
+    --tiktok-warning: #ffaa00;
 }
 
 * {
@@ -24,764 +20,851 @@
 }
 
 body {
-    font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background-color: var(--ibm-gray-10);
-    color: var(--ibm-gray-100);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--tiktok-black);
+    color: var(--tiktok-white);
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
-/* Navigation */
-.navbar {
-    background-color: var(--ibm-gray-100);
-    color: var(--ibm-white);
-    padding: 0;
-    position: sticky;
+/* TikTok Navigation */
+.tiktok-nav {
+    position: fixed;
     top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.nav-container {
-    max-width: 1400px;
-    margin: 0 auto;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background-color: var(--tiktok-black);
+    border-bottom: 1px solid var(--tiktok-border);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
+    padding: 0 1rem;
+    z-index: 1000;
 }
 
-.nav-brand {
+.nav-left, .nav-right {
+    flex: 1;
+}
+
+.nav-center {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+}
+
+.logo {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    font-size: 1.25rem;
-    font-weight: 600;
-}
-
-.nav-brand i {
-    color: var(--ibm-blue);
+    gap: 0.5rem;
     font-size: 1.5rem;
-}
-
-.nav-links {
-    display: flex;
-    gap: 2rem;
-}
-
-.nav-links a {
-    color: var(--ibm-white);
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.2s;
-    padding: 0.5rem 0;
-    border-bottom: 2px solid transparent;
-}
-
-.nav-links a:hover {
-    color: var(--ibm-blue-light);
-    border-bottom-color: var(--ibm-blue-light);
-}
-
-/* Container */
-.container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 2rem;
-}
-
-/* Hero Section */
-.hero {
-    background: linear-gradient(135deg, var(--ibm-blue) 0%, var(--ibm-blue-dark) 100%);
-    color: var(--ibm-white);
-    padding: 4rem 2rem;
-    border-radius: 8px;
-    margin-bottom: 2rem;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-}
-
-.hero-content {
-    text-align: center;
-}
-
-.hero h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    font-weight: 600;
-}
-
-.hero-subtitle {
-    font-size: 1.25rem;
-    opacity: 0.9;
-    margin-bottom: 2rem;
-}
-
-.hero-stats {
-    display: flex;
-    justify-content: center;
-    gap: 4rem;
-    margin-top: 2rem;
-}
-
-.stat-item {
-    text-align: center;
-}
-
-.stat-value {
-    font-size: 2.5rem;
     font-weight: 700;
-    margin-bottom: 0.5rem;
 }
 
-.stat-label {
-    font-size: 1rem;
-    opacity: 0.8;
+.logo i {
+    background: linear-gradient(45deg, var(--tiktok-pink), var(--tiktok-cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 2rem;
 }
 
-/* Status Dashboard */
-.status-dashboard {
-    background: var(--ibm-white);
-    padding: 2rem;
-    border-radius: 8px;
-    margin-bottom: 2rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+.logo-text {
+    background: linear-gradient(45deg, var(--tiktok-pink), var(--tiktok-cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
-.status-dashboard h2 {
-    margin-bottom: 1.5rem;
-    color: var(--ibm-gray-100);
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
+.menu-icon, .search-icon {
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--tiktok-white);
+    transition: color 0.3s;
 }
 
-.status-grid {
+.menu-icon:hover, .search-icon:hover {
+    color: var(--tiktok-pink);
+}
+
+/* Main Container */
+.main-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: 240px 1fr 320px;
+    gap: 0;
+    margin-top: 60px;
+    min-height: calc(100vh - 60px);
 }
 
-.status-card {
-    background: var(--ibm-gray-10);
-    padding: 1.5rem;
-    border-radius: 8px;
-    border-left: 4px solid var(--ibm-blue);
-    transition: transform 0.2s, box-shadow 0.2s;
+/* Left Sidebar */
+.sidebar-left {
+    background-color: var(--tiktok-black);
+    border-right: 1px solid var(--tiktok-border);
+    padding: 1.5rem 0;
+    position: sticky;
+    top: 60px;
+    height: calc(100vh - 60px);
+    overflow-y: auto;
 }
 
-.status-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.status-header {
+.sidebar-item {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-    font-weight: 600;
-    color: var(--ibm-gray-70);
+    gap: 1rem;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: var(--tiktok-text-gray);
+    font-weight: 500;
 }
 
-.status-header i {
-    color: var(--ibm-blue);
+.sidebar-item:hover {
+    background-color: var(--tiktok-gray);
+    color: var(--tiktok-white);
 }
 
-.status-value {
+.sidebar-item.active {
+    color: var(--tiktok-pink);
+    border-left: 3px solid var(--tiktok-pink);
+    background-color: var(--tiktok-gray);
+}
+
+.sidebar-item i {
     font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
+    width: 24px;
+}
+
+/* Feed Container */
+.feed-container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+/* Video Card (TikTok-style) */
+.video-card {
+    background-color: var(--tiktok-dark);
+    border: 1px solid var(--tiktok-border);
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.video-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(254, 44, 85, 0.1);
+}
+
+.hero-card {
+    background: linear-gradient(135deg, rgba(254, 44, 85, 0.1) 0%, rgba(37, 244, 238, 0.1) 100%);
+    border: 1px solid rgba(254, 44, 85, 0.3);
+}
+
+/* Card Header */
+.card-header {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 0.5rem;
+    margin-bottom: 1rem;
 }
 
-.status-success {
-    color: var(--ibm-green);
-}
-
-.status-detail {
-    font-size: 0.875rem;
-    color: var(--ibm-gray-50);
-}
-
-/* Pipeline Section */
-.pipeline-section {
-    background: var(--ibm-white);
-    padding: 2rem;
-    border-radius: 8px;
-    margin-bottom: 2rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-.pipeline-section h2 {
-    margin-bottom: 2rem;
-    color: var(--ibm-gray-100);
+.user-info {
     display: flex;
     align-items: center;
     gap: 0.75rem;
 }
 
-.pipeline-container {
-    display: grid;
-    grid-template-columns: repeat(9, auto);
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 2rem;
-    justify-content: center;
-}
-
-.pipeline-stage {
-    background: var(--ibm-gray-10);
-    border-radius: 8px;
-    padding: 1rem;
-    text-align: center;
-    position: relative;
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
-    min-width: 160px;
-    max-width: 180px;
+.avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, var(--tiktok-pink), var(--tiktok-cyan));
     display: flex;
-    flex-direction: column;
+    align-items: center;
     justify-content: center;
+    font-size: 1.25rem;
+    color: var(--tiktok-white);
 }
 
-.pipeline-stage:hover {
-    border-color: var(--ibm-blue);
+.status-avatar {
+    background: linear-gradient(45deg, #00ff88, #00ccff);
+}
+
+.pipeline-avatar {
+    background: linear-gradient(45deg, #ff00ff, #00ffff);
+}
+
+.commands-avatar {
+    background: linear-gradient(45deg, #ffaa00, #ff0066);
+/* Video Container */
+.video-container {
+    position: relative;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.video-container:hover {
     transform: scale(1.02);
 }
 
-.pipeline-stage.active {
-    background: var(--ibm-blue);
-    color: var(--ibm-white);
-    border-color: var(--ibm-blue-dark);
+.content-media {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
 }
 
-.pipeline-stage.completed {
-    background: var(--ibm-green);
-    color: var(--ibm-white);
-    border-color: var(--ibm-green);
+.play-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 4rem;
+    color: var(--tiktok-white);
+    opacity: 0.9;
+    transition: all 0.3s;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
-.pipeline-stage.failed {
-    background: var(--ibm-red);
-    color: var(--ibm-white);
-    border-color: var(--ibm-red);
+.video-container:hover .play-overlay {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
 }
 
-.stage-number {
-    width: 32px;
-    height: 32px;
-    background: var(--ibm-blue);
-    color: var(--ibm-white);
+.video-duration {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: var(--tiktok-white);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+}
+
+.metrics-avatar {
+    background: linear-gradient(45deg, #0066ff, #00ff66);
+}
+
+.user-details h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--tiktok-white);
+}
+
+.user-details p {
+    font-size: 0.875rem;
+    color: var(--tiktok-text-gray);
+}
+
+.follow-btn {
+    padding: 0.5rem 1.5rem;
+    background: linear-gradient(45deg, var(--tiktok-pink), var(--tiktok-cyan));
+    border: none;
+    border-radius: 4px;
+    color: var(--tiktok-white);
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.follow-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(254, 44, 85, 0.4);
+}
+
+/* Card Content */
+.card-content {
+    margin-bottom: 1rem;
+}
+
+.content-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(45deg, var(--tiktok-pink), var(--tiktok-cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.content-description {
+    color: var(--tiktok-text-gray);
+    margin-bottom: 1rem;
+}
+
+/* Stats Row */
+.stats-row {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.stat-box {
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--tiktok-cyan);
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: var(--tiktok-text-gray);
+}
+
+/* Card Actions */
+.card-actions {
+    display: flex;
+    gap: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--tiktok-border);
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: none;
+    border: none;
+    color: var(--tiktok-text-gray);
+    cursor: pointer;
+    font-size: 1rem;
+    transition: color 0.3s, transform 0.2s;
+}
+
+.action-btn:hover {
+    color: var(--tiktok-pink);
+    transform: scale(1.1);
+}
+
+.action-btn i {
+    font-size: 1.25rem;
+}
+
+/* Status Grid TikTok */
+.status-grid-tiktok {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.status-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: var(--tiktok-gray);
+    border-radius: 8px;
+    border: 1px solid var(--tiktok-border);
+    transition: all 0.3s;
+}
+
+.status-item:hover {
+    border-color: var(--tiktok-cyan);
+    transform: translateY(-2px);
+}
+
+.status-icon {
+    font-size: 1.5rem;
+    color: var(--tiktok-cyan);
+}
+
+.status-info h4 {
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+}
+
+.status-success {
+    color: var(--tiktok-success);
+    font-weight: 600;
+}
+
+.status-detail {
+    font-size: 0.75rem;
+    color: var(--tiktok-text-gray);
+}
+
+/* Pipeline Flow */
+.pipeline-flow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin: 1.5rem 0;
+    overflow-x: auto;
+    padding: 1rem 0;
+}
+
+.flow-stage {
+    flex-shrink: 0;
+    text-align: center;
+    padding: 1rem;
+    background-color: var(--tiktok-gray);
+    border: 2px solid var(--tiktok-border);
+    border-radius: 12px;
+    min-width: 100px;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.flow-stage:hover {
+    border-color: var(--tiktok-pink);
+    transform: scale(1.05);
+}
+
+.flow-stage.active {
+    background: linear-gradient(135deg, rgba(254, 44, 85, 0.2), rgba(37, 244, 238, 0.2));
+    border-color: var(--tiktok-pink);
+    animation: pulse-tiktok 2s infinite;
+}
+
+.flow-stage.completed {
+    background: linear-gradient(135deg, rgba(0, 255, 136, 0.2), rgba(0, 204, 255, 0.2));
+    border-color: var(--tiktok-success);
+}
+
+.stage-icon {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 0.5rem;
+    background: linear-gradient(45deg, var(--tiktok-pink), var(--tiktok-cyan));
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 700;
-    margin: 0 auto 0.75rem;
-    font-size: 1rem;
-}
-
-.pipeline-stage.active .stage-number,
-.pipeline-stage.completed .stage-number {
-    background: var(--ibm-white);
-    color: var(--ibm-blue);
-}
-
-.stage-content i {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-    display: block;
-}
-
-.stage-content h3 {
-    font-size: 0.95rem;
-    margin-bottom: 0.35rem;
-    font-weight: 600;
-}
-
-.stage-content p {
-    font-size: 0.75rem;
-    opacity: 0.8;
-    margin-bottom: 0.5rem;
-    line-height: 1.3;
-}
-
-.stage-status {
-    font-size: 0.75rem;
-    font-weight: 600;
-    padding: 0.2rem 0.6rem;
-    border-radius: 4px;
-    background: var(--ibm-gray-20);
-    display: inline-block;
-}
-
-.pipeline-stage.active .stage-status {
-    background: rgba(255, 255, 255, 0.2);
-}
-
-.pipeline-connector {
-    width: 30px;
-    height: 2px;
-    background: var(--ibm-gray-30);
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.pipeline-connector::after {
-    content: '→';
-    position: absolute;
-    color: var(--ibm-gray-50);
     font-size: 1.25rem;
-    background: var(--ibm-gray-10);
-    padding: 0 0.2rem;
 }
 
-.pipeline-controls {
+.flow-stage.completed .stage-icon {
+    background: linear-gradient(45deg, var(--tiktok-success), var(--tiktok-cyan));
+}
+
+.flow-stage h4 {
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+}
+
+.flow-stage p {
+    font-size: 0.75rem;
+    color: var(--tiktok-text-gray);
+    margin-bottom: 0.5rem;
+}
+
+.stage-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background-color: var(--tiktok-border);
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.flow-stage.active .stage-badge {
+    background-color: var(--tiktok-pink);
+}
+
+.flow-stage.completed .stage-badge {
+    background-color: var(--tiktok-success);
+}
+
+.flow-arrow {
+    color: var(--tiktok-text-gray);
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+/* Pipeline Controls TikTok */
+.pipeline-controls-tiktok {
     display: flex;
     gap: 1rem;
     justify-content: center;
-    margin-bottom: 1.5rem;
+    margin: 1.5rem 0;
 }
 
-.btn-primary, .btn-secondary {
+.tiktok-btn {
     padding: 0.75rem 2rem;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s;
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    transition: all 0.3s;
 }
 
-.btn-primary {
-    background: var(--ibm-blue);
-    color: var(--ibm-white);
+.tiktok-btn.primary {
+    background: linear-gradient(45deg, var(--tiktok-pink), var(--tiktok-cyan));
+    color: var(--tiktok-white);
 }
 
-.btn-primary:hover {
-    background: var(--ibm-blue-dark);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(15, 98, 254, 0.3);
+.tiktok-btn.primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 16px rgba(254, 44, 85, 0.4);
 }
 
-.btn-secondary {
-    background: var(--ibm-gray-20);
-    color: var(--ibm-gray-100);
+.tiktok-btn.secondary {
+    background-color: var(--tiktok-gray);
+    color: var(--tiktok-white);
+    border: 1px solid var(--tiktok-border);
 }
 
-.btn-secondary:hover {
-    background: var(--ibm-gray-30);
+.tiktok-btn.secondary:hover {
+    background-color: var(--tiktok-border);
 }
 
-.btn-primary:disabled, .btn-secondary:disabled {
+.tiktok-btn:disabled {
     opacity: 0.5;
     cursor: not-allowed;
 }
 
-.pipeline-log {
-    background: var(--ibm-gray-100);
-    color: var(--ibm-green);
-    padding: 1.5rem;
-    border-radius: 4px;
-    font-family: 'IBM Plex Mono', monospace;
+/* Pipeline Log TikTok */
+.pipeline-log-tiktok {
+    background-color: var(--tiktok-black);
+    border: 1px solid var(--tiktok-border);
+    border-radius: 8px;
+    padding: 1rem;
+    font-family: 'Courier New', monospace;
     font-size: 0.875rem;
+    color: var(--tiktok-cyan);
     max-height: 300px;
     overflow-y: auto;
     line-height: 1.8;
     display: none;
 }
 
-.pipeline-log.active {
+.pipeline-log-tiktok.active {
     display: block;
 }
 
-/* Commands Section */
-.commands-section {
-    background: var(--ibm-white);
-    padding: 2rem;
-    border-radius: 8px;
-    margin-bottom: 2rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-.commands-section h2 {
-    margin-bottom: 1rem;
-    color: var(--ibm-gray-100);
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-}
-
-.section-description {
-    color: var(--ibm-gray-50);
-    margin-bottom: 2rem;
-}
-
-.command-tabs {
+/* Command Tabs TikTok */
+.command-tabs-tiktok {
     display: flex;
     gap: 0.5rem;
-    margin-bottom: 2rem;
-    border-bottom: 2px solid var(--ibm-gray-20);
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--tiktok-border);
 }
 
-.tab-btn {
+.tab-btn-tiktok {
     padding: 0.75rem 1.5rem;
     background: none;
     border: none;
-    border-bottom: 2px solid transparent;
-    color: var(--ibm-gray-70);
+    color: var(--tiktok-text-gray);
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.3s;
+    border-bottom: 2px solid transparent;
     margin-bottom: -2px;
 }
 
-.tab-btn:hover {
-    color: var(--ibm-blue);
+.tab-btn-tiktok:hover {
+    color: var(--tiktok-white);
 }
 
-.tab-btn.active {
-    color: var(--ibm-blue);
-    border-bottom-color: var(--ibm-blue);
+.tab-btn-tiktok.active {
+    color: var(--tiktok-pink);
+    border-bottom-color: var(--tiktok-pink);
 }
 
-.tab-content {
+.tab-content-tiktok {
     display: none;
 }
 
-.tab-content.active {
+.tab-content-tiktok.active {
     display: block;
 }
 
-.command-card {
-    background: var(--ibm-gray-10);
-    padding: 1.5rem;
+/* Command Item */
+.command-item {
+    background-color: var(--tiktok-gray);
+    border: 1px solid var(--tiktok-border);
     border-radius: 8px;
-    margin-bottom: 1.5rem;
-    border-left: 4px solid var(--ibm-blue);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    transition: all 0.3s;
 }
 
-.command-header {
+.command-item:hover {
+    border-color: var(--tiktok-cyan);
+}
+
+.command-title {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1rem;
-}
-
-.command-header h3 {
-    color: var(--ibm-gray-100);
-    font-size: 1.125rem;
-}
-
-.copy-btn {
-    padding: 0.5rem 1rem;
-    background: var(--ibm-blue);
-    color: var(--ibm-white);
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    margin-bottom: 0.75rem;
     font-weight: 600;
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
 }
 
-.copy-btn:hover {
-    background: var(--ibm-blue-dark);
-    transform: translateY(-2px);
+.copy-btn-tiktok {
+    padding: 0.5rem 1rem;
+    background: linear-gradient(45deg, var(--tiktok-pink), var(--tiktok-cyan));
+    border: none;
+    border-radius: 6px;
+    color: var(--tiktok-white);
+    cursor: pointer;
+    transition: all 0.3s;
 }
 
-.copy-btn.copied {
-    background: var(--ibm-green);
+.copy-btn-tiktok:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(254, 44, 85, 0.3);
+}
+
+.copy-btn-tiktok.copied {
+    background: var(--tiktok-success);
 }
 
 pre {
-    background: var(--ibm-gray-100);
-    color: var(--ibm-green);
+    background-color: var(--tiktok-black);
+    border: 1px solid var(--tiktok-border);
+    border-radius: 6px;
     padding: 1rem;
-    border-radius: 4px;
     overflow-x: auto;
-    margin-bottom: 0.75rem;
 }
 
 code {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Courier New', monospace;
     font-size: 0.875rem;
+    color: var(--tiktok-cyan);
 }
 
-.command-description {
-    color: var(--ibm-gray-50);
-    font-size: 0.875rem;
-}
-
-.command-warning {
-    color: var(--ibm-red);
-    font-size: 0.875rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
-}
-
-/* Metrics Section */
-.metrics-section {
-    background: var(--ibm-white);
-    padding: 2rem;
-    border-radius: 8px;
-    margin-bottom: 2rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-.metrics-section h2 {
-    margin-bottom: 2rem;
-    color: var(--ibm-gray-100);
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-}
-
-.metrics-grid {
+/* Metrics Grid TikTok */
+.metrics-grid-tiktok {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-}
-
-.metric-card {
-    background: var(--ibm-gray-10);
-    padding: 2rem;
-    border-radius: 8px;
-    text-align: center;
-    transition: transform 0.2s;
-}
-
-.metric-card:hover {
-    transform: translateY(-4px);
-}
-
-.metric-icon {
-    font-size: 2.5rem;
-    color: var(--ibm-blue);
-    margin-bottom: 1rem;
-}
-
-.metric-value {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--ibm-gray-100);
-    margin-bottom: 0.5rem;
-}
-
-.metric-label {
-    color: var(--ibm-gray-50);
-    font-size: 1rem;
-    margin-bottom: 0.75rem;
-}
-
-.metric-trend {
-    font-size: 0.875rem;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.25rem;
-}
-
-.metric-trend.positive {
-    color: var(--ibm-green);
-}
-
-.metric-trend.neutral {
-    color: var(--ibm-gray-50);
-}
-
-/* Quick Links */
-.quick-links {
-    background: var(--ibm-white);
-    padding: 2rem;
-    border-radius: 8px;
-    margin-bottom: 2rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-.quick-links h2 {
-    margin-bottom: 1.5rem;
-    color: var(--ibm-gray-100);
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-}
-
-.links-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
 }
 
-.link-card {
-    background: var(--ibm-gray-10);
+.metric-box {
+    background-color: var(--tiktok-gray);
+    border: 1px solid var(--tiktok-border);
+    border-radius: 12px;
     padding: 1.5rem;
-    border-radius: 8px;
     text-align: center;
-    text-decoration: none;
-    color: var(--ibm-gray-100);
-    transition: all 0.2s;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.75rem;
-    border: 2px solid transparent;
+    transition: all 0.3s;
 }
 
-.link-card:hover {
-    background: var(--ibm-blue);
-    color: var(--ibm-white);
+.metric-box:hover {
+    border-color: var(--tiktok-pink);
     transform: translateY(-4px);
-    box-shadow: 0 4px 12px rgba(15, 98, 254, 0.3);
 }
 
-.link-card i {
+.metric-icon-tiktok {
     font-size: 2rem;
+    color: var(--tiktok-cyan);
+    margin-bottom: 0.75rem;
 }
 
-/* Toast Notification */
-.toast {
+.metric-value-tiktok {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--tiktok-white);
+    margin-bottom: 0.5rem;
+}
+
+.metric-label-tiktok {
+    font-size: 0.875rem;
+    color: var(--tiktok-text-gray);
+    margin-bottom: 0.5rem;
+}
+
+.metric-trend-tiktok {
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.metric-trend-tiktok.positive {
+    color: var(--tiktok-success);
+}
+
+.metric-trend-tiktok.neutral {
+    color: var(--tiktok-text-gray);
+}
+
+/* Right Sidebar */
+.sidebar-right {
+    background-color: var(--tiktok-black);
+    border-left: 1px solid var(--tiktok-border);
+    padding: 1.5rem;
+    position: sticky;
+    top: 60px;
+    height: calc(100vh - 60px);
+    overflow-y: auto;
+}
+
+.trending-section {
+    margin-bottom: 2rem;
+}
+
+.trending-section h3 {
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+    color: var(--tiktok-white);
+}
+
+.trending-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    background-color: var(--tiktok-gray);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.trending-item:hover {
+    background-color: var(--tiktok-border);
+    transform: translateX(4px);
+}
+
+.trend-tag {
+    color: var(--tiktok-cyan);
+    font-weight: 600;
+}
+
+.trend-count {
+    font-size: 0.875rem;
+    color: var(--tiktok-text-gray);
+}
+
+/* Footer TikTok */
+.footer-tiktok {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--tiktok-border);
+    text-align: center;
+    font-size: 0.875rem;
+    color: var(--tiktok-text-gray);
+}
+
+.footer-tiktok strong {
+    background: linear-gradient(45deg, var(--tiktok-pink), var(--tiktok-cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.footer-links-tiktok {
+    margin-top: 0.5rem;
+}
+
+.footer-links-tiktok a {
+    color: var(--tiktok-text-gray);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-links-tiktok a:hover {
+    color: var(--tiktok-pink);
+}
+
+/* Toast TikTok */
+.toast-tiktok {
     position: fixed;
     bottom: 2rem;
     right: 2rem;
-    background: var(--ibm-gray-100);
-    color: var(--ibm-white);
+    background: linear-gradient(45deg, var(--tiktok-pink), var(--tiktok-cyan));
+    color: var(--tiktok-white);
     padding: 1rem 1.5rem;
-    border-radius: 4px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(254, 44, 85, 0.4);
     transform: translateY(200%);
     transition: transform 0.3s ease;
     z-index: 2000;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
+    font-weight: 600;
 }
 
-.toast.show {
+.toast-tiktok.show {
     transform: translateY(0);
 }
 
-.toast.success {
-    background: var(--ibm-green);
-}
-
-/* Footer */
-.footer {
-    background: var(--ibm-gray-100);
-    color: var(--ibm-white);
-    padding: 2rem;
-    text-align: center;
-    margin-top: 2rem;
-}
-
-.footer-content {
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-.footer-links {
-    margin-top: 1rem;
-    opacity: 0.8;
-}
-
-.footer-links a {
-    color: var(--ibm-white);
-    text-decoration: none;
-    transition: color 0.2s;
-}
-
-.footer-links a:hover {
-    color: var(--ibm-blue-light);
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .nav-container {
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    .nav-links {
-        gap: 1rem;
-    }
-
-    .hero h1 {
-        font-size: 2rem;
-    }
-
-    .hero-stats {
-        flex-direction: column;
-        gap: 2rem;
-    }
-
-    .pipeline-container {
-        grid-template-columns: 1fr;
-        gap: 0.5rem;
-    }
-
-    .pipeline-connector {
-        width: 2px;
-        height: 30px;
-        margin: 0 auto;
-        background: var(--ibm-gray-30);
-    }
-
-    .pipeline-connector::after {
-        content: '↓';
-        left: 50%;
-        transform: translateX(-50%);
-        top: 50%;
-    }
-
-    .command-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-    }
-
-    .container {
-        padding: 1rem;
-    }
+.toast-tiktok.success {
+    background: linear-gradient(45deg, var(--tiktok-success), var(--tiktok-cyan));
 }
 
 /* Animations */
-@keyframes pulse {
+@keyframes pulse-tiktok {
     0%, 100% {
-        opacity: 1;
+        box-shadow: 0 0 0 0 rgba(254, 44, 85, 0.7);
     }
     50% {
-        opacity: 0.6;
+        box-shadow: 0 0 0 10px rgba(254, 44, 85, 0);
     }
 }
 
-.pipeline-stage.active {
-    animation: pulse 2s infinite;
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
 }
 
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+::-webkit-scrollbar-track {
+    background: var(--tiktok-black);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--tiktok-border);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--tiktok-pink);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .main-container {
+        grid-template-columns: 200px 1fr 280px;
     }
 }
 
-.status-card, .metric-card, .command-card {
-    animation: slideIn 0.5s ease-out;
+@media (max-width: 992px) {
+    .main-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .sidebar-left, .sidebar-right {
+        display: none;
+    }
+    
+    .feed-container {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .pipeline-flow {
+        flex-direction: column;
+    }
+    
+    .flow-arrow {
+        transform: rotate(90deg);
+    }
+    
+    .stats-row {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .status-grid-tiktok,
+    .metrics-grid-tiktok {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* Made with Bob */
